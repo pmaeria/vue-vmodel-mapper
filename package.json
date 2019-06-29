@@ -1,6 +1,6 @@
 {
   "name": "vue-vmodel-mapper",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "main": "dist/vue-vmodel-mapper.cjs.js",
   "module": "dist/vue-vmodel-mapper.esm.js",
   "browser": "dist/vue-vmodel-mapper.umd.js",
