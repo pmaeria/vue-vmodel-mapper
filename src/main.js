@@ -1,15 +1,15 @@
 export default function vueVmodelMapper(
   keys = [],
-  { vmodelProp = 'value', vmodelEvent = 'input' } = {}
+  { prop = 'value', event = 'input' } = {}
 ) {
   return keys.reduce((map, key) => {
     map[key] = {
       get() {
-        return this[vmodelProp][key];
+        return this[prop][key];
       },
       set(newValue) {
-        this.$emit(vmodelEvent, {
-          ...this[vmodelProp],
+        this.$emit(event, {
+          ...this[prop],
           [key]: newValue,
         });
       },

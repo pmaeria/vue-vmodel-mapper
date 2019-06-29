@@ -1,4 +1,4 @@
-# 📚 Vue Vmodel Mapper
+# Vue Vmodel Mapper
 
 vue-vmodel-mapper is a small helper to simplify the creation of custom v-model components that use object as value prop.
 
@@ -16,8 +16,8 @@ npm i --save vue-vmodel-mapper
 ## Quick example
 ```
 <template>
-  <input v-model="firstname">
-  <input v-model="lastname">
+  <input v-model="firstname" />
+  <input v-model="lastname" />
 </template>
 <script>
 import vueVmodelMapper from 'vue-vmodel-mapper';
@@ -31,6 +31,7 @@ export default {
     }
   },
   computed: {
+    // key name for every key in prop object
     ...vueVmodelMapper(['firstname', 'lastname'])
   }
 }
@@ -42,8 +43,8 @@ Pass a second argument to `vue-vmodel-mapper` to customize prop and event name t
 
 ```
 <template>
-  <input v-model="firstname">
-  <input v-model="lastname">
+  <input v-model="firstname" />
+  <input v-model="lastname" />
 </template>
 <script>
 import vueVmodelMapper from 'vue-vmodel-mapper';
@@ -64,8 +65,8 @@ export default {
     ...vueVmodelMapper(
       ['firstname', 'lastname'],
       {
-        vmodelProp: 'customKeyName',
-        vmodelEvent: 'customEventName'
+        prop: 'customKeyName',
+        event: 'customEventName'
       }
     )
   }
@@ -75,12 +76,12 @@ export default {
 
 ## How it works
 
-Example of prop mutation.
+Example of prop mutation (what not to do)
 ```
 <template>
-  <!-- cannot do this, will mutate nested prop object -->
-  <input v-model="value.firstname">
-  <input v-model="value.lastname">
+  <!-- cannot do this, will mutate nested prop object values -->
+  <input v-model="value.firstname" />
+  <input v-model="value.lastname" />
 </template>
 <script>
 export default {
@@ -96,7 +97,7 @@ export default {
 ```
 
 ### Solution
-The solution is to create computed variables for every key in `this.value` with separate get and set functions.
+Create computed variables for every key in `this.value` with separate get and set functions.
 Setting a computed variable will trigger an emit of a new object instead of mutating the existing `this.value` prop.
 
 `vue-vmodel-mapper` is just a helper generates the computed variables below.
@@ -143,14 +144,6 @@ export default {
 }
 </script>
 ```
-
-
-## Developer environment requirements
-
-To run this project, you will need:
-
-- Node.js >= v10.5.0, use nvm - [install instructions](https://github.com/creationix/nvm#install-script)
-- Yarn >= v1.7.0 - [install instructions ("Alternatives" tab)](https://yarnpkg.com/en/docs/install#alternatives-rc)
 
 ## Running tests
 

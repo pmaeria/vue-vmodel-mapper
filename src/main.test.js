@@ -60,7 +60,7 @@ describe('vueVmodelMapper', () => {
         },
         props: ['customProp'],
         computed: {
-          ...vueVmodelMapper(['key1'], { vmodelProp: 'customProp', vmodelEvent: 'customEvent' }),
+          ...vueVmodelMapper(['key1'], { prop: 'customProp', event: 'customEvent' }),
         },
         render(h) {
           h('h1', this.customProp.key1)
