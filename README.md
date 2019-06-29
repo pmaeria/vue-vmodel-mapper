@@ -1,13 +1,14 @@
 # Vue Vmodel Mapper
 
-vue-vmodel-mapper is a small helper to simplify the creation of custom v-model components that use object as value prop.
+`vue-vmodel-mapper` is a small helper to simplify the creation of custom v-model components that accept an object type as value prop.
 
 ## Why
-Not straightforward to create custom v-model components that accepts value of type object as a prop.
-The prop cannot be mutated and component must emit a new object on change of any nested value in the object.
-This also makes it tricky to bind nested values in prop object using v-model inside your component.
+It's quite complicated to create custom v-model components that behave correctly, especially if they accept a prop object.
+The prop cannot be mutated and component must emit a new object on change of any value in the object.
+You also can't conveniently bind to nested values in prop object using `v-model` directive since it mutates as well.
 
-vue-vmodel-mapper generates the boilerplate necessary to instrument a custom v-model component painlessly AND allow vmodel binding of nested values.
+`vue-vmodel-mapper` generates the boilerplate to setup a custom v-model component painlessly by mapping keys in the prop object to computed variables that can detect change and emit a new object with the changes.
+
 
 ## Install
 ```
@@ -128,6 +129,20 @@ export default {
   }
 }
 </script>
+```
+
+## Caveats
+It assumes values for the object keys mapped are primitive types like `String`, `Number` or `Boolean`. It cannot detect changes in nested objects.
+
+eg:
+```
+// can't detect changes to innerkey1
+const prop = {
+  key1: 'hello',
+  key2: {
+    innerkey1: 'world'
+  }
+}
 ```
 
 ## Running tests
