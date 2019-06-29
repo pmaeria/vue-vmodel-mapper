@@ -1,0 +1,45 @@
+{
+  "name": "vue-vmodel-mapper",
+  "version": "1.0.1",
+  "main": "dist/vue-vmodel-mapper.cjs.js",
+  "module": "dist/vue-vmodel-mapper.esm.js",
+  "browser": "dist/vue-vmodel-mapper.umd.js",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pmaeria/vue-vmodel-mapper"
+  },
+  "devDependencies": {
+    "@babel/core": "7.4.5",
+    "@babel/preset-env": "7.4.5",
+    "@vue/test-utils": "^1.0.0-beta.29",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-jest": "24.8.0",
+    "jest": "24.8.0",
+    "rollup": "1.16.2",
+    "rollup-plugin-babel": "4.3.3",
+    "rollup-plugin-commonjs": "10.0.0",
+    "rollup-plugin-node-resolve": "5.1.0",
+    "vue": "^2.6.10",
+    "vue-template-compiler": "^2.6.10"
+  },
+  "scripts": {
+    "prepare": "yarn build",
+    "build": "rollup -c",
+    "test": "jest && yarn build",
+    "test:watch": "npm test -- --watch"
+  },
+  "renovate": {
+    "extends": [
+      "config:js-lib"
+    ],
+    "automerge": true,
+    "major": {
+      "automerge": false
+    },
+    "automergeType": "branch"
+  },
+  "files": [
+    "dist"
+  ]
+}
