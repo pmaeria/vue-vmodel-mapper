@@ -2,18 +2,19 @@
 
 vue-vmodel-mapper is a small helper to simplify the creation of custom v-model components that use object as value prop.
 
-It's not straightforward to create custom v-model components that accepts value of type object as a prop.
+## Why
+Not straightforward to create custom v-model components that accepts value of type object as a prop.
 The prop cannot be mutated and component must emit a new object on change of any nested value in the object.
 This also makes it tricky to bind nested values in prop object using v-model inside your component.
 
 vue-vmodel-mapper generates the boilerplate necessary to instrument a custom v-model component painlessly AND allow vmodel binding of nested values.
 
-## Installation
+## Install
 ```
 npm i --save vue-vmodel-mapper
 ```
 
-## Quick example
+## Basic Usage
 ```
 <template>
   <input v-model="firstname" />
@@ -38,7 +39,13 @@ export default {
 </script>
 ```
 
-## Customize vmodel event and prop name
+## Customize
+`vue-vmodel-mapper` takes two arguments, an array of keys to map into computed variables and an optional customisation object.
+
+### Default
+Without second argument, `vue-vmodel-mapper` defaults the v-model prop name to `value`, and changes will emit event name `input`.
+
+### Custom vmodel event and prop name
 Pass a second argument to `vue-vmodel-mapper` to customize prop and event name to match names used by your component
 
 ```
@@ -75,28 +82,6 @@ export default {
 ```
 
 ## How it works
-
-Example of prop mutation (what not to do)
-```
-<template>
-  <!-- cannot do this, will mutate nested prop object values -->
-  <input v-model="value.firstname" />
-  <input v-model="value.lastname" />
-</template>
-<script>
-export default {
-  name: 'CustomVmodel',
-  prop: {
-    // value is a object with { firstname, lastname }
-    value: {
-      type: Object
-    }
-  },
-}
-</script>
-```
-
-### Solution
 Create computed variables for every key in `this.value` with separate get and set functions.
 Setting a computed variable will trigger an emit of a new object instead of mutating the existing `this.value` prop.
 
