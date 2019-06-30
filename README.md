@@ -11,12 +11,12 @@ You also can't conveniently bind to nested values in prop object using `v-model`
 
 
 ## Install
-```
+```sh
 npm i --save vue-vmodel-mapper
 ```
 
 ## Basic Usage
-```
+```vue
 <template>
   <input v-model="firstname" />
   <input v-model="lastname" />
@@ -49,7 +49,7 @@ Without second argument, `vue-vmodel-mapper` defaults the v-model prop name to `
 ### Custom vmodel event and prop name
 Pass a second argument to `vue-vmodel-mapper` to customize prop and event name to match names used by your component
 
-```
+```vue
 <template>
   <input v-model="firstname" />
   <input v-model="lastname" />
@@ -87,7 +87,7 @@ Create computed variables for every key in `this.value` with separate get and se
 Setting a computed variable will trigger an emit of a new object instead of mutating the existing `this.value` prop.
 
 `vue-vmodel-mapper` is just a helper generates the computed variables below.
-```
+```vue
 <template>
   <input v-model="firstname">
   <input v-model="lastname">
@@ -135,7 +135,7 @@ export default {
 It assumes values for the object keys mapped are primitive types like `String`, `Number` or `Boolean`. It cannot detect changes in nested objects.
 
 eg:
-```
+```js
 // can't detect changes to innerkey1
 const prop = {
   key1: 'hello',
